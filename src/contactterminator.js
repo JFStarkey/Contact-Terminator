@@ -64,23 +64,37 @@ h1 {
 }
 
 .callCard {
-    border: 1px solid #cccccc;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 10px;
     display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    background: #ffffff;
+    align-items: center;
+    gap: 20px;
+    padding: 12px;
+    margin-bottom: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+}
+
+.callDetails {
+    display: flex;
+    flex: 1;
+    gap: 40px;
+    align-items: center;
+}
+
+.callField {
+    min-width: 120px;
+	white-space: nowrap;
+}
+
+.callField strong {
+    display: block;
+    font-size: 12px;
+    opacity: .7;
+    margin-bottom: 3px;
 }
 
 .callCard strong {
     display: block;
     margin-bottom: 4px;
-}
-
-.callDetails {
-    flex: 1;
 }
 
 .emptyState {
@@ -93,7 +107,7 @@ h1 {
 
 input[type="checkbox"] {
     transform: scale(1.2);
-    margin-top: 4px;
+    margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -268,33 +282,35 @@ class ContactTerminator extends HTMLElement {
             );
 
             card.innerHTML = `
-                <input
-                    type="checkbox"
-                    class="callCheckbox"
-                    data-id="${call.interactionId}"
-                >
+    <input
+        type="checkbox"
+        class="callCheckbox"
+        data-id="${call.interactionId}"
+    >
 
-                <div class="callDetails">
+    <div class="callDetails">
 
-                    <strong>Queue:<strong>
-                    ${call.queue}
+        <div class="callField">
+            <strong>Queue</strong>
+            ${call.queue}
+        </div>
 
-                    <br><br>
+        <div class="callField">
+            <strong>ANI</strong>
+            ${call.ani}
+        </div>
 
-                    <strong>ANI:<strong>
-                    ${call.ani}
+        <div class="callField">
+            <strong>Wait Time</strong>
+            ${call.waitTime}
+        </div>
 
-                    <br><br>
+        <div class="callField">
+            <strong>Interaction ID</strong>
+            ${call.interactionId}
+        </div>
 
-                    <strong>Wait Time:<strong>
-                    ${call.waitTime}
-
-                    <br><br>
-
-                    <strong>Interaction ID:<strong>
-                    ${call.interactionId}
-
-                </div>
+    </div>
             `;
 
             container.appendChild(
