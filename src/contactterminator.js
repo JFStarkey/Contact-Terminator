@@ -1,3 +1,5 @@
+import { Desktop } from "@wxcc-desktop/sdk";
+
 const template = document.createElement("template");
 
 template.innerHTML = `
@@ -189,6 +191,27 @@ class ContactTerminator extends HTMLElement {
     }
 
     connectedCallback() {
+		
+		Desktop.config.init();
+
+console.log(
+    "Desktop SDK Initialized"
+);
+
+console.log(
+    "Desktop Object:",
+    Desktop
+);
+
+console.log(
+    "Actions:",
+    Desktop.actions
+);
+
+console.log(
+    "Agent Contact:",
+    Desktop.agentContact
+);
 
         console.log(
             "CONTACT TERMINATOR STARTED"
