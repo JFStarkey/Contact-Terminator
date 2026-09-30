@@ -1,22 +1,41 @@
 import { Desktop } from "@wxcc-desktop/sdk";
 
-console.log("CONTACT TERMINATOR STARTING");
+class ContactTerminator extends HTMLElement {
 
-try {
+    connectedCallback() {
 
-    Desktop.config.init();
+        console.log("CONTACT TERMINATOR STARTED");
 
-    console.log(
-        "Desktop SDK Loaded"
-    );
+        this.innerHTML = `
+            <div style="padding:20px;">
+                <h2>Contact Terminator</h2>
+                <p>Widget Loaded</p>
+            </div>
+        `;
+
+        try {
+
+            Desktop.config.init();
+
+            console.log(
+                "Desktop SDK Loaded"
+            );
+
+        }
+        catch (error) {
+
+            console.error(
+                "SDK Init Failed",
+                error
+            );
+
+        }
+
+    }
 
 }
-catch (error) {
 
-    console.log(
-        "Not running inside WxCC Desktop"
-    );
-
-    console.error(error);
-
-}
+customElements.define(
+    "contact-terminator",
+    ContactTerminator
+);
